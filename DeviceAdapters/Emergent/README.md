@@ -24,8 +24,8 @@ Poland and the European Union.
 | macOS | Not supported |
 
 Tested with **Micro-Manager 2.0.3 (20261008), Windows x64, Emergent eSDK
-4.08.06**, and an **HE-25000SBL-T-M** camera with firmware **3.35**. Other
-camera models and SDK versions have not been validated with the Windows binary.
+4.08.06/4.08.02**, and an **HE-25000SBL-T-M** camera with firmware **3.35**. Other
+camera models and SDK versions have not been validated with the Windows binary but should work.
 
 The Linux binary uses **Emergent eSDK 4.08.05 for Ubuntu 24.04 x64**.
 Both binaries require **Micro-Manager Device API 75 / Module API 10**.
@@ -36,8 +36,8 @@ Both binaries require **Micro-Manager Device API 75 / Module API 10**.
    for Windows x64 and the compatible
    [Emergent eSDK](https://www.emergentvisiontec.com/downloads/).
    This binary was tested with eSDK 4.08.06; obtain that version from Emergent
-   if it is not listed.
-2. Configure the camera and network interface using Emergent's instructions.
+   or test newest version available.
+2. Configure the camera and network interface using Emergent's instructions in eCapture.
    Confirm that the camera captures in eCapture, then close eCapture and Micro-Manager.
 3. Download [mmgr_dal_EmergentCamera.dll](mmgr_dal_EmergentCamera.dll) and copy it
    into the folder containing `ImageJ.exe`, normally:
