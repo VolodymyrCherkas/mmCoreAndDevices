@@ -13,6 +13,32 @@ Camera settings can be saved and restored between Micro-Manager sessions.
 Advanced Optical Devices is a system integrator and Emergent reseller in
 Poland and the European Union.
 
+## Project layout
+
+```text
+EmergentCamera/
+  README.md
+  CMakeLists.txt                     Linux adapter build
+  EmergentCamera.vcxproj             Windows adapter build
+  EmergentCamera.vcxproj.filters
+  src/                              C++ implementation and header
+  binaries/
+    windows-x64/                     Hardware-tested Windows DLL
+    linux-x86_64/                    Experimental Linux shared library
+    SHA256SUMS
+  docs/                             Build instructions, user guide, test report
+  examples/                         Settings example and property migration map
+  tests/                            Hardware test scripts
+    results/2026-11-05/              Archived regression and static-check results
+  licenses/                         Micro-Manager third-party license notice
+```
+
+The adapter directory was renamed from `Emergent` to `EmergentCamera`.
+The module/device name remains **EmergentCamera**, so existing hardware
+configurations do not need a device-name change for this directory rename.
+Download the binary for your operating system; the SDK is installed separately.
+Checksums are in [binaries/SHA256SUMS](binaries/SHA256SUMS).
+
 ## Compatibility
 
 **macOS is not supported, including Intel Macs and Apple silicon.**
@@ -39,7 +65,7 @@ Both binaries require **Micro-Manager Device API 75 / Module API 10**.
    or test newest version available.
 2. Configure the camera and network interface using Emergent's instructions in eCapture.
    Confirm that the camera captures in eCapture, then close eCapture and Micro-Manager.
-3. Download [mmgr_dal_EmergentCamera.dll](mmgr_dal_EmergentCamera.dll) and copy it
+3. Download [mmgr_dal_EmergentCamera.dll](binaries/windows-x64/mmgr_dal_EmergentCamera.dll) and copy it
    into the folder containing `ImageJ.exe`, normally:
 
    ```text
@@ -73,7 +99,7 @@ C:\Program Files\EVT\eSDK\ffmpeg\bin
    **4.08.05 for Ubuntu 24.04 x64**. Use its supported kernel and NIC drivers;
    the supplied SDK package targets kernel **6.17.0**. Confirm capture using
    the vendor software, then close it.
-2. Download [libmmgr_dal_EmergentCamera.so.0](libmmgr_dal_EmergentCamera.so.0)
+2. Download [libmmgr_dal_EmergentCamera.so.0](binaries/linux-x86_64/libmmgr_dal_EmergentCamera.so.0)
    and place it beside Micro-Manager's other `libmmgr_dal_*.so.0` adapters.
    Keep the `.so.0` filename.
 3. Make the SDK libraries available before starting Micro-Manager. For the
@@ -114,3 +140,32 @@ file still selects hardware and camera IP addresses.
   before connecting external equipment.
 - PTP diagnostics are exposed, but master lock and synchronization accuracy
   have not been verified. Scheduled PTP acquisition is not implemented.
+
+
+## Source and documentation
+
+- [C++ source](src/) and [source layout](src/README.md).
+- [Windows build instructions](docs/BUILD_WINDOWS.md).
+- [Linux build and validation](docs/BUILD_LINUX.md).
+- [Detailed adapter guide](docs/ADAPTER_GUIDE.md), including properties,
+  GPIO, PTP, hardware burst limits, and settings persistence.
+- [2026-11-05 test report](docs/TEST_REPORT.md) and
+  [archived results](tests/results/2026-11-05/).
+- [Hardware test instructions](tests/README.md).
+- [Settings example](examples/Emergent.ini.example) and
+  [property migration map](examples/property-renames.json).
+
+This reorganization preserves the C++ source and the published binaries.
+Camera tests were performed on **2026-11-05**, as recorded in the report;
+they were not repeated on the PC used for this reorganization. The archived
+Windows functional results contain 170 PASS records with zero failures and
+six passing persistence groups. Linux build/static checks passed, while
+Linux runtime and camera validation remain pending.
+
+## Licensing
+
+**BSD-3-Clause is proposed for the original adapter code; it has not yet been
+adopted.** See [the license recommendation](docs/LICENSING.md). Existing
+Micro-Manager code retains its own license, reproduced in
+[licenses/MMDevice-BSD-3-Clause.txt](licenses/MMDevice-BSD-3-Clause.txt).
+The vendor SDK is not included and remains subject to Emergent's terms.
