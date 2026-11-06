@@ -1,3 +1,6 @@
+# Copyright (c) 2026, Dr. Volodymyr Cherkas
+# SPDX-License-Identifier: BSD-3-Clause
+
 param([string]$AdapterPath, [string]$CameraIP = '192.168.206.206', [string]$MicroManagerPath = 'C:\Program Files\Micro-Manager-2.0', [switch]$Probe, [switch]$Capabilities, [switch]$ConfigCheck, [switch]$Persistence)
 $ErrorActionPreference = 'Stop'
 if (!$AdapterPath) {

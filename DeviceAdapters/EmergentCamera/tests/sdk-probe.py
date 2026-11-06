@@ -1,3 +1,6 @@
+# Copyright (c) 2026, Dr. Volodymyr Cherkas
+# SPDX-License-Identifier: BSD-3-Clause
+
 import ctypes as c
 import os
 import time

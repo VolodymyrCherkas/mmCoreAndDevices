@@ -18,6 +18,8 @@ Poland and the European Union.
 ```text
 EmergentCamera/
   README.md
+  LICENSE                           BSD-3-Clause; Dr. Volodymyr Cherkas
+  NOTICE                            Original author attribution
   CMakeLists.txt                     Linux adapter build
   EmergentCamera.vcxproj             Windows adapter build
   EmergentCamera.vcxproj.filters
@@ -155,17 +157,27 @@ file still selects hardware and camera IP addresses.
 - [Settings example](examples/Emergent.ini.example) and
   [property migration map](examples/property-renames.json).
 
-This reorganization preserves the C++ source and the published binaries.
+The runtime implementation and published binaries are unchanged. Copyright
+and SPDX license headers have been added to the source.
 Camera tests were performed on **2026-11-05**, as recorded in the report;
 they were not repeated on the PC used for this reorganization. The archived
 Windows functional results contain 170 PASS records with zero failures and
 six passing persistence groups. Linux build/static checks passed, while
 Linux runtime and camera validation remain pending.
 
-## Licensing
+## Licensing and attribution
 
-**BSD-3-Clause is proposed for the original adapter code; it has not yet been
-adopted.** See [the license recommendation](docs/LICENSING.md). Existing
-Micro-Manager code retains its own license, reproduced in
-[licenses/MMDevice-BSD-3-Clause.txt](licenses/MMDevice-BSD-3-Clause.txt).
+**BSD-3-Clause** — [LICENSE](LICENSE).
+
+Copyright (c) 2026, **Dr. Volodymyr Cherkas**.
+
+Public forks and redistributed modifications must retain this copyright
+notice naming the original author, the license conditions, and the disclaimer.
+Binary redistributions must reproduce them in their accompanying documentation
+and/or other materials. The author's name may not be used for endorsement
+without specific prior written permission. See [NOTICE](NOTICE) and
+[licensing and attribution guidance](docs/LICENSING.md).
+
+Existing Micro-Manager code retains its own copyright and license, reproduced
+in [licenses/MMDevice-BSD-3-Clause.txt](licenses/MMDevice-BSD-3-Clause.txt).
 The vendor SDK is not included and remains subject to Emergent's terms.
